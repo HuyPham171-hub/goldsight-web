@@ -6,9 +6,8 @@ services:
     buildCommand: |
       pip install --upgrade pip
       pip install -r requirements.txt
-      reflex init
-      reflex export --frontend-only
-    startCommand: reflex run --env prod --backend-only
+      reflex export
+    startCommand: reflex run --env prod --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9
