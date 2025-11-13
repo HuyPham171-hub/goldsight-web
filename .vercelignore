@@ -1,0 +1,48 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Environment
+.env
+.venv
+env/
+ENV/
+
+# Logs
+*.log
+logs/
+
+# Reflex
+.reflex/
+
+# Node modules (will be reinstalled)
+.web/node_modules/
+
+# Machine Learning Models (large files)
+assets/ml_models/*.keras
+assets/ml_models/*.h5
+assets/ml_models/*.pkl
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Git
+.git/
+.gitignore
