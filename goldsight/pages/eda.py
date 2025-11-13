@@ -1,9 +1,6 @@
 """Chapter 2: Exploratory Data Analysis - Understanding the Gold Price Landscape"""
 
 import reflex as rx
-import json
-import plotly.graph_objects as go
-import plotly.io as pio
 import pandas as pd
 from pathlib import Path
 from goldsight.components import page_layout, chapter_progress
@@ -17,59 +14,28 @@ def section_divider() -> rx.Component:
     return rx.divider(margin_y="1.5em")
 
 
-def load_plotly_chart(chart_name: str) -> go.Figure:
+def chart_image(chart_name: str, width: str = "100%") -> rx.Component:
     """
-    Generic function to load any Plotly chart from JSON cache.
+    Display static chart image for deployment.
     
     Args:
-        chart_name: Name of the chart file (without .json extension)
-                   e.g., "gold_currency_heatmap", "correlation_matrix"
+        chart_name: Name of the chart image file (without extension)
+                   e.g., "gold_currency_heatmap", "correlation_heatmap"
+        width: CSS width value
     
     Returns:
-        Plotly Figure object, or empty figure with error message if failed
+        rx.image component displaying the chart
     
     Usage:
-        rx.plotly(data=load_plotly_chart("gold_currency_heatmap"), width="900px")
+        chart_image("gold_currency_heatmap", width="1000px")
     """
-    try:
-        # Construct path to cache - works in both dev and production
-        # Get the project root directory
-        project_root = Path(__file__).parent.parent.parent
-        cache_path = project_root / "goldsight" / "data" / "cache" / f"{chart_name}.json"
-        
-        if not cache_path.exists():
-            return go.Figure().update_layout(
-                title=f"Chart '{chart_name}' not found",
-                annotations=[{
-                    "text": f"Run explore.ipynb to generate {chart_name}.json",
-                    "showarrow": False,
-                    "x": 0.5,
-                    "y": 0.5,
-                    "font": {"size": 16, "color": "gray"}
-                }],
-                height=400
-            )
-        
-        # Load JSON and convert to Figure using plotly.io
-        with open(cache_path, 'r', encoding='utf-8') as f:
-            fig_json = f.read()
-        
-        fig = pio.from_json(fig_json)
-        
-        return fig
-        
-    except Exception as e:
-        return go.Figure().update_layout(
-            title=f"Error loading '{chart_name}'",
-            annotations=[{
-                "text": f"Error: {str(e)}",
-                "showarrow": False,
-                "x": 0.5,
-                "y": 0.5,
-                "font": {"size": 14, "color": "red"}
-            }],
-            height=400
-        )
+    return rx.image(
+        src=f"/charts/{chart_name}.png",
+        alt=f"{chart_name.replace('_', ' ').title()}",
+        width=width,
+        border_radius="8px",
+        box_shadow="0 2px 8px rgba(0, 0, 0, 0.1)"
+    )
 
 
 def metric_card(label: str, value: str, icon: str, color_scheme: str = "amber") -> rx.Component:
@@ -660,7 +626,7 @@ def gold_spot_currency_analysis() -> rx.Component:
                     size="3",
                     color="var(--gray-12)"
                 ),
-                rx.plotly(data=load_plotly_chart("gold_currency_heatmap"), width="1000px"),
+                chart_image("gold_currency_heatmap", width="1000px"),
                 spacing="3",
                 align="start",
                 width="100%"
@@ -723,7 +689,7 @@ def target_variable_section() -> rx.Component:
                     size="3",
                     color="var(--gray-12)"
                 ),
-                rx.plotly(data=load_plotly_chart("gold_price_timeseries"), width="1200px"),
+                chart_image("gold_price_timeseries", width="1200px"),
                 spacing="3",
                 align="start",
                 width="100%"
@@ -816,7 +782,7 @@ def distribution_analysis_section() -> rx.Component:
                             color="var(--gray-12)",
                             margin_bottom="1em"
                         ),
-                        rx.plotly(data=load_plotly_chart("gold_distributions"), width="1200px"),
+                        chart_image("gold_distributions", width="1200px"),
                         spacing="3",
                         align="start",
                         width="100%"
@@ -833,7 +799,7 @@ def distribution_analysis_section() -> rx.Component:
                             color="var(--gray-12)",
                             margin_bottom="1em"
                         ),
-                        rx.plotly(data=load_plotly_chart("market_distributions"), width="1200px"),
+                        chart_image("market_distributions", width="1200px"),
                         spacing="3",
                         align="start",
                         width="100%"
@@ -850,7 +816,7 @@ def distribution_analysis_section() -> rx.Component:
                             color="var(--gray-12)",
                             margin_bottom="1em"
                         ),
-                        rx.plotly(data=load_plotly_chart("macro_distributions"), width="1200px"),
+                        chart_image("macro_distributions", width="1200px"),
                         spacing="3",
                         align="start",
                         width="100%"
@@ -867,7 +833,7 @@ def distribution_analysis_section() -> rx.Component:
                             color="var(--gray-12)",
                             margin_bottom="1em"
                         ),
-                        rx.plotly(data=load_plotly_chart("volatility_distributions"), width="1000px"),
+                        chart_image("volatility_distributions", width="1000px"),
                         spacing="3",
                         align="start",
                         width="100%"
@@ -936,7 +902,7 @@ def correlation_analysis_section() -> rx.Component:
                     size="3",
                     color="var(--gray-12)"
                 ),
-                rx.plotly(data=load_plotly_chart("correlation_heatmap"), width="1000px"),
+                chart_image("correlation_heatmap", width="1000px"),
                 spacing="3",
                 align="start",
                 width="100%"

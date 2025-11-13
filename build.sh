@@ -25,4 +25,4 @@ cp -r goldsight/data/cache/*.json ./dist/assets/charts_cache/ 2>/dev/null || tru
 mkdir -p ./dist/goldsight/data/cache
 cp -r goldsight/data/cache/*.json ./dist/goldsight/data/cache/ 2>/dev/null || true
 
-echo "✅ Build complete! Chart data copied, WebSocket disabled for static deployment"
+echo "Build complete! Chart data copied, WebSocket disabled for static deployment"
