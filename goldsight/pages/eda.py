@@ -32,8 +32,10 @@ def load_plotly_chart(chart_name: str) -> go.Figure:
         rx.plotly(data=load_plotly_chart("gold_currency_heatmap"), width="900px")
     """
     try:
-        # Construct path to cache
-        cache_path = Path(__file__).parent.parent / "data" / "cache" / f"{chart_name}.json"
+        # Construct path to cache - works in both dev and production
+        # Get the project root directory
+        project_root = Path(__file__).parent.parent.parent
+        cache_path = project_root / "goldsight" / "data" / "cache" / f"{chart_name}.json"
         
         if not cache_path.exists():
             return go.Figure().update_layout(
@@ -49,7 +51,7 @@ def load_plotly_chart(chart_name: str) -> go.Figure:
             )
         
         # Load JSON and convert to Figure using plotly.io
-        with open(cache_path, 'r') as f:
+        with open(cache_path, 'r', encoding='utf-8') as f:
             fig_json = f.read()
         
         fig = pio.from_json(fig_json)
