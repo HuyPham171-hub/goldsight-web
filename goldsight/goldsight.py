@@ -24,7 +24,6 @@ app = rx.App(
         gray_color="gray",     # Neutral colors
         radius="large",        # Rounded corners
     ),
-
 )
 
 # Add pages with routes

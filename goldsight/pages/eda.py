@@ -30,7 +30,7 @@ def chart_image(chart_name: str, width: str = "100%") -> rx.Component:
         chart_image("gold_currency_heatmap", width="1000px")
     """
     return rx.image(
-        src=f"/charts/{chart_name}.png",
+        src=f"/assets/charts/{chart_name}.png",
         alt=f"{chart_name.replace('_', ' ').title()}",
         width=width,
         border_radius="8px",
