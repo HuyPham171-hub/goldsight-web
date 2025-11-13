@@ -1,6 +1,6 @@
 {
-  "buildCommand": "pip install -r requirements.txt && reflex init && reflex export --no-zip",
-  "outputDirectory": ".web/build/client",
+  "buildCommand": "bash build.sh",
+  "outputDirectory": "dist",
   "installCommand": "pip install -r requirements.txt",
   "framework": null,
   "routes": [
