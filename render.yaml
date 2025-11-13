@@ -7,8 +7,10 @@ services:
       pip install --upgrade pip
       pip install -r requirements.txt
       reflex export --no-zip
-    startCommand: reflex run --env prod --backend-host 0.0.0.0 --backend-port $PORT
+    startCommand: reflex run --env prod --backend-only
     envVars:
+      - key: ENV
+        value: prod
       - key: PYTHON_VERSION
         value: 3.11.9
       - key: NODE_VERSION
