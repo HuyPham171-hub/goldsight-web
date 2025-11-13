@@ -14,6 +14,9 @@ python3 -m reflex export --no-zip
 mkdir -p ./dist
 cp -r .web/build/client/* ./dist/
 
+# Copy custom CSS
+cp assets/custom.css ./dist/custom.css 2>/dev/null || true
+
 # Copy chart images to dist assets
 mkdir -p ./dist/assets/charts
 cp -r assets/charts/*.png ./dist/assets/charts/ 2>/dev/null || true

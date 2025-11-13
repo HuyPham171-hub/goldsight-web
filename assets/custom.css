@@ -1,0 +1,23 @@
+/* Hide WebSocket connection error banner and icon in static export */
+
+/* Hide the connection error notification banner */
+div[title*="Connection Error"] {
+    display: none !important;
+}
+
+/* Hide the connection status icon (wifi/offline icon) */
+div[class*="connection"],
+div[aria-label*="connection"],
+div[aria-label*="Connection"] {
+    display: none !important;
+}
+
+/* Hide any fixed position error elements at bottom right */
+div[style*="position: fixed"][style*="bottom"][style*="right"] {
+    display: none !important;
+}
+
+/* Hide the "Built with Reflex" badge (optional - remove if you want to keep it) */
+/* a[href="https://reflex.dev"] {
+    display: none !important;
+} */

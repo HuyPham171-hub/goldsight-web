@@ -24,6 +24,9 @@ app = rx.App(
         gray_color="gray",     # Neutral colors
         radius="large",        # Rounded corners
     ),
+    stylesheets=[
+        "/custom.css",  # Custom CSS to hide WebSocket errors in static export
+    ],
 )
 
 # Add pages with routes
