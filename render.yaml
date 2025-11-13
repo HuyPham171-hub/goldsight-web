@@ -6,13 +6,14 @@ services:
     buildCommand: |
       pip install --upgrade pip
       pip install -r requirements.txt
+      reflex init
       reflex export --no-zip
-    startCommand: reflex run --env prod --backend-only
+    startCommand: reflex run --env prod --backend-only --loglevel info
     envVars:
-      - key: ENV
-        value: prod
       - key: PYTHON_VERSION
         value: 3.11.9
       - key: NODE_VERSION
         value: 18
+      - key: API_URL
+        value: http://0.0.0.0:10000
     plan: free
