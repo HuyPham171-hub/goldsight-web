@@ -4,10 +4,13 @@
 # Install Python dependencies
 pip install -r requirements.txt
 
+# Set environment variable to disable WebSocket in static export
+export REFLEX_DISABLE_WEBSOCKET=1
+
 # Initialize Reflex (creates .web directory)
 python3 -m reflex init
 
-# Export static frontend
+# Export static frontend (without WebSocket client code)
 python3 -m reflex export --no-zip
 
 # Create dist directory and copy static files
@@ -22,4 +25,4 @@ cp -r goldsight/data/cache/*.json ./dist/assets/charts_cache/ 2>/dev/null || tru
 mkdir -p ./dist/goldsight/data/cache
 cp -r goldsight/data/cache/*.json ./dist/goldsight/data/cache/ 2>/dev/null || true
 
-echo "Build complete! Chart data copied to dist/assets/charts_cache/"
+echo "✅ Build complete! Chart data copied, WebSocket disabled for static deployment"
