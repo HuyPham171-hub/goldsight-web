@@ -3,6 +3,7 @@
 import reflex as rx
 import json
 import plotly.graph_objects as go
+import plotly.io as pio
 import pandas as pd
 from pathlib import Path
 from goldsight.components import page_layout, chapter_progress
@@ -47,11 +48,11 @@ def load_plotly_chart(chart_name: str) -> go.Figure:
                 height=400
             )
         
-        # Load JSON and convert to Figure (keep original layout from notebook)
+        # Load JSON and convert to Figure using plotly.io
         with open(cache_path, 'r') as f:
-            fig_dict = json.load(f)
+            fig_json = f.read()
         
-        fig = go.Figure(fig_dict)
+        fig = pio.from_json(fig_json)
         
         return fig
         
