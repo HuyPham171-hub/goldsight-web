@@ -9,7 +9,7 @@ def forecast_page() -> rx.Component:
             rx.heading("Gold Price Forecast", size="9", margin_bottom="2rem"),
             
             rx.text(
-                "Nội dung dự đoán giá vàng sẽ được thêm vào đây.",
+                "Gold price forecast content will be added here.",
                 size="4",
                 color_scheme="gray"
             ),

@@ -30,7 +30,7 @@ def chart_image(chart_name: str, width: str = "100%") -> rx.Component:
         chart_image("gold_currency_heatmap", width="1000px")
     """
     return rx.image(
-        src=f"/assets/charts/{chart_name}.png",
+        src=f"/{chart_name}.png",
         alt=f"{chart_name.replace('_', ' ').title()}",
         width=width,
         border_radius="8px",
@@ -1774,7 +1774,7 @@ def eda_page() -> rx.Component:
                 rx.flex(
                     rx.link(
                         rx.button(
-                            "Next: Chapter 3 - Modeling ➔",
+                            "Next: Chapter 3 - Modeling",
                             size="3",
                             color_scheme="amber",
                             variant="solid"

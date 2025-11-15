@@ -14,7 +14,7 @@ def next_chapter_navigation(next_title: str, next_route: str) -> rx.Component:
     return rx.flex(
         rx.link(
             rx.button(
-                f"Next: {next_title} ➔",
+                f"Next: {next_title}",
                 size="3",
                 color_scheme="amber",
                 variant="solid"

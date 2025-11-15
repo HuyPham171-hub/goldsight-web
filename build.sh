@@ -17,9 +17,8 @@ cp -r .web/build/client/* ./dist/
 # Copy custom CSS
 cp assets/custom.css ./dist/custom.css 2>/dev/null || true
 
-# Copy chart images to dist assets
-mkdir -p ./dist/assets/charts
-cp -r assets/charts/*.png ./dist/assets/charts/ 2>/dev/null || true
+# Copy chart images to dist root (matching dev server path)
+cp -r assets/charts/*.png ./dist/ 2>/dev/null || true
 
 # Copy navbar.js to dist assets
 cp assets/navbar.js ./dist/assets/navbar.js 2>/dev/null || true
